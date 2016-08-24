@@ -3,6 +3,7 @@ package api;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -16,7 +17,7 @@ public class FlightController {
     @Autowired
     private FlightAggregatorService flightAggregatorService;
 
-    @RequestMapping("/flights/search")
+    @RequestMapping(value="/flights/search", method= RequestMethod.GET)
     public ProviderResponse search() {
         List<String> providers = Arrays.asList("expedia", "orbitz", "priceline", "travelocity", "united");
         List<LinkedList<Flight>> flights = flightAggregatorService.getAggregatedFlights(providers);
